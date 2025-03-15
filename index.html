@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="" />
+    <script defer type="text/javascript" src="script.js"></script>
+
+    <title>Frontend Mentor | Product list with cart</title>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <div class="overlay"></div>
+        <div>
+          <h1 class="main__heading">Desserts</h1>
+          <div class="grid"></div>
+        </div>
+
+        <aside class="cart">
+          <h3 class="cart__heading">Your Cart (0)</h3>
+          <div class="cart__empty__img__wrapper">
+            <img
+              src="assets/images/illustration-empty-cart.svg"
+              alt="illustration of empty cart"
+            />
+            <p class="cart__empty-text">Your added items will appear here</p>
+          </div>
+
+          <div class="cart__price">
+            <p class="cart__price__text">Order Total</p>
+            <p class="cart__price__number">$0</p>
+          </div>
+          <div class="carbon-wrapper">
+            <div class="carbon">
+              <img src="assets/images/icon-carbon-neutral.svg" alt="" />
+              <p>This is <strong>carbon-neutral</strong> delivery</p>
+            </div>
+            <button class="confirm__btn">Confirm Order</button>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <div class="confirm">
+      <div class="confirm__img__container">
+        <img src="/assets/images/icon-order-confirmed.svg" alt="Check icon" />
+      </div>
+      <h3 class="confirm__heading">Order Confirmed</h3>
+      <p class="confirm__text">We hope you enjoy your food!</p>
+
+      <div class="confirm__list__container">
+        <ul class="confirm__list"></ul>
+
+        <div class="cart__price__confirm"></div>
+      </div>
+
+      <button class="confirm__btn new__order-btn">Start New Order</button>
+    </div>
+  </body>
+</html>

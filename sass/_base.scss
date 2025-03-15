@@ -1,0 +1,403 @@
+$red: #c73a0f;
+$green: hsl(159, 69%, 38%);
+$rose-50: hsl(20, 50%, 98%);
+$rose-100: hsl(13, 31%, 94%);
+$rose-300: hsl(14, 25%, 72%);
+$rose-400: hsl(7, 20%, 60%);
+$rose-500: hsl(12, 20%, 44%);
+$rose-900: hsl(14, 65%, 9%);
+$grey: #777;
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  @include respond(tab-land) {
+    font-size: 56.25%;
+  }
+
+  @include respond(tab-port) {
+    font-size: 50%;
+  }
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Red Hat Display", sans-serif;
+  box-sizing: border-box;
+  // box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.3);
+
+  @include respond(tab-port-sm) {
+    position: relative;
+  }
+}
+
+img {
+  max-width: 100%;
+  border-radius: 9px;
+  display: block;
+}
+
+main {
+  width: 100%;
+  margin: 5rem;
+}
+
+.container {
+  background-color: $rose-100;
+  padding: 8rem;
+  border-radius: 9px;
+  max-width: 144rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  gap: 5rem;
+  @include respond(tab-port) {
+    padding: 4rem;
+  }
+
+  @include respond(tab-port-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 2rem;
+
+  &__product__category {
+    font-size: 1.4rem;
+    color: $grey;
+    margin-bottom: 0.5rem;
+    margin-top: 2rem;
+    font-weight: 300;
+  }
+
+  &__product__name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+  }
+
+  &__product__price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+    color: $red;
+    margin-bottom: 2rem;
+  }
+
+  &__image__container {
+    position: relative;
+    margin-bottom: 4rem;
+  }
+
+  &__cart__button,
+  &__increment__container {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+    height: 5rem;
+    width: 60%;
+
+    border: 1px solid $red;
+    box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+
+    gap: 0.4rem;
+    transition: all 0.3s;
+
+    &:hover {
+      color: $red;
+    }
+
+    &__image {
+      width: 2.5rem;
+    }
+  }
+
+  &__cart__minus__image,
+  &__cart__plus__image {
+    padding: 1rem;
+  }
+
+  &__increment__container {
+    z-index: 10;
+    background-color: $red;
+    justify-content: space-around;
+    width: 100%;
+    bottom: 50%;
+    // opacity: 0;
+    display: none;
+
+    & p {
+      color: #fff;
+    }
+  }
+}
+
+.main__heading {
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+// CART
+
+.cart {
+  background-color: #fff;
+  border-radius: 9px;
+  padding: 2rem;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+
+  &__heading {
+    color: $red;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  &__empty__img__wrapper {
+    & img {
+      margin: 0 auto;
+    }
+  }
+  &__empty-text {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    color: $rose-400;
+    text-align: center;
+  }
+
+  &__list {
+    font-size: 1.4rem;
+
+    &__heading {
+      font-weight: 700;
+      @include respond(tab-port-sm) {
+        font-size: 1.8rem;
+      }
+    }
+
+    &__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 2rem;
+      border-bottom: 3px solid $rose-100;
+      margin-bottom: 2rem;
+    }
+
+    &__text {
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+    }
+
+    &__image {
+      width: 1.5rem;
+      cursor: pointer;
+      outline: 1px solid $rose-300;
+      transition: all 0.3s;
+      outline-offset: 4px;
+      border-radius: 50%;
+      @include respond(tab-port-sm) {
+        width: 1.8rem;
+      }
+
+      &:hover {
+        outline: 1px solid $rose-500;
+      }
+    }
+
+    &__quantity {
+      color: $red;
+      font-weight: bold;
+    }
+  }
+
+  &__price,
+  &__price__confirm {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+
+    &__number {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+  }
+
+  &__price {
+    opacity: 0;
+  }
+
+  .product-price {
+    color: #777;
+    font-weight: 300;
+  }
+
+  .carbon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.6rem;
+    background-color: $rose-50;
+    border-radius: 9px;
+    font-size: 1.3rem;
+    gap: 0.5rem;
+
+    img {
+      max-width: 2rem;
+    }
+
+    p {
+      @include respond(tab-port-sm) {
+        font-size: 1.6rem;
+      }
+    }
+  }
+}
+
+.carbon-wrapper {
+  display: none;
+}
+
+.confirm__btn {
+  margin-top: 2rem;
+  border: none;
+  padding: 1.2rem 2.4rem;
+  border-radius: 25px;
+  width: 100%;
+  background-color: $red;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #8b290b;
+  }
+}
+
+.cart__price__text {
+  @include respond(tab-port-sm) {
+    font-size: 1.6rem;
+  }
+}
+
+.confirm {
+  position: absolute;
+  padding: 2rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 40rem;
+  border-radius: 9px;
+  display: none;
+
+  background-color: #fff;
+  z-index: 100;
+
+  @include respond(tab-port-sm) {
+    bottom: 0;
+    top: auto;
+    max-width: 60rem;
+  }
+
+  @include respond(phone) {
+    bottom: 0;
+    top: auto;
+    max-width: 45rem;
+  }
+
+  @include respond(tab-port-sm) {
+    grid-template-columns: 1fr;
+  }
+
+  &__heading {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__text {
+    font-size: 1.3rem;
+    color: #777;
+    margin-bottom: 3rem;
+  }
+
+  &__list__container {
+    background-color: $rose-50;
+    padding: 2rem;
+  }
+
+  &__list__image {
+    max-width: 25%;
+  }
+}
+
+.cart__list__text__img__container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 99;
+  backdrop-filter: blur(1px);
+  display: none;
+}
+
+.special-char {
+  display: inline-block;
+  color: #777;
+  font-size: 1rem;
+  padding-left: 1rem;
+}
+
+.product-price {
+  color: $rose-300;
+  font-weight: bold;
+}
+
+.cart__flex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.6rem;
+}
+
+.img__border {
+  border: 2px solid $red;
+}
+
+.final-price {
+  font-weight: 700;
+  font-size: 1.6rem;
+}
