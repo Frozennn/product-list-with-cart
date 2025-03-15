@@ -141,7 +141,7 @@ function handleAddToCart(e) {
     newCartItem.remove();
     let quantity = parseInt(quantityEl.textContent);
     currentProduct.quantity = quantity;
-    totalPrice -= currentProduct.price * currentProduct.quantity;
+    totalPrice -= (currentProduct.price * currentProduct.quantity).toFixed(2);
 
     const selectedItem = document.querySelector(`.grid__image-${index}`);
     selectedItem.classList.remove("img__border");
@@ -156,6 +156,7 @@ function handleAddToCart(e) {
     currentProduct.quantity = 1;
 
     updateCartQuantity();
+    updateTotalPrice();
 
     const cartItem = document.querySelector(".cart__list");
 
@@ -199,7 +200,7 @@ function handleDecrement(e) {
     selectedItem.classList.remove("img__border");
     // incrementContainer.style.opacity = 0;
     incrementContainer.style.display = "none";
-    totalPrice -= currentProduct.price * currentProduct.quantity;
+    totalPrice -= (currentProduct.price * currentProduct.quantity).toFixed(2);
 
     const cartItemElem = document.querySelector(
       `.cart__list[data-index="${index}"]`
@@ -227,7 +228,7 @@ function handleSidebarUI(currentProduct, quantityEl, quantity, index) {
 
   cartQuantityEl.textContent = currentProduct.quantity + "x";
   finalPrice.textContent =
-    "$" + currentProduct.quantity * currentProduct.price + ".0";
+    "$" + (currentProduct.quantity * currentProduct.price).toFixed(2);
   cartPriceNumber.textContent = "$" + totalPrice;
 }
 
@@ -291,7 +292,9 @@ function handleConfirmOrder(e) {
           </p>
           </div>
         </div>
-        <p><span class="final-price">$${item.price * item.quantity}</span></p>
+        <p><span class="final-price">$${(item.price * item.quantity).toFixed(
+          2
+        )}</span></p>
       </li>
     </ul>
   `;
